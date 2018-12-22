@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import {Icon, Container, Content, Header, Left, Right, Button, Body} from "native-base";
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import pic from '../../assets/me.png';
+
+var images = [pic, pic, pic, pic, pic, pic, pic, pic, pic, pic];
+var {width, height} = Dimensions.get('window');
 
 class ProfileTab extends Component {
     static navigationOptions = {
@@ -24,9 +27,39 @@ class ProfileTab extends Component {
             activeIndex: index
         })
     };
+    renderSectionOne = () => {
+        return images.map((image, index) => {
+            return (
+                <View key={index}
+                      style={[{width: (width) / 3}, {height: (width) / 3}, {marginBottom: 2}, index % 3 !== 0 ? {paddingLeft: 2} : {paddingLeft: 0}]}>
+
+                    <Image style={{flex: 1, width: undefined, height: undefined}} source={image}/>
+
+                </View>
+            )
+        })
+    };
+
+    renderSection = () => {
+        if (this.state.activeIndex === 0) {
+            return (
+                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                    {this.renderSectionOne()}
+                </View>
+            )
+        } else if (this.state.activeIndex === 1) {
+            return (
+                <View>
+                    <Text>
+                        This is second section
+                    </Text>
+                </View>
+            )
+        }
+    };
 
     handlePressOnEdit = () => {
-      alert(<TextInput></TextInput>);
+        alert('test');
     };
 
     render() {
@@ -127,6 +160,7 @@ class ProfileTab extends Component {
                                       style={[this.state.activeIndex === 3 ? {} : {color: 'grey'}]}/>
                             </Button>
                         </View>
+                        {this.renderSection()}
                     </View>
 
                 </Content>
