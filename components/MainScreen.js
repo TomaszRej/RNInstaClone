@@ -19,9 +19,10 @@ import ProfileTab from "./AppTabNavigator/ProfileTab";
 
 class MainScreen extends Component{
    static navigationOptions = {
-       headerLeft: <Icon name='ios-camera' style={{paddingLeft: 15}}/>,
-       title: 'Instagram',
-       headerRight: <Icon name='ios-send' style={{paddingRight: 15}}/>
+    header: null
+       // headerLeft: <Icon name='ios-camera' style={{paddingLeft: 15}}/>,
+       // title: 'Instagram',
+       // headerRight: <Icon name='ios-send' style={{paddingRight: 15}}/>
    };
     render() {
         return (
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+
     },
 
 });
