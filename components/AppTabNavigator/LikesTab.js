@@ -1,31 +1,45 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Icon} from "native-base";
+import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import {Icon, Container, Content, Header, Left, Right, Button, Body} from "native-base";
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import pic from '../../assets/me.png';
 
+import EditScreen from '../EditScreen';
+import ProfileTab from './ProfileTab';
+import New from '../New';
 
-class LikeTab extends Component{
+import {createAppContainer, createStackNavigator } from 'react-navigation';
+class LikesTab extends Component {
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
             <Icon name='ios-heart'
-                  style={{color:tintColor,marginTop:5}}/>
+                  style={{color: tintColor, marginTop: 5}}/>
         )
     };
-    render(){
+
+
+    handlePressOnEdit = () => {
+        alert('test');
+    };
+
+    render() {
         return (
-            <View style={styles.container}>
-                <Text>Like Tab</Text>
-            </View>
+
+               <AppContainer/>
+
         );
     }
 }
-export default LikeTab;
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
+const AppNavigator = createStackNavigator({
+    EditScreen,
+    New
 });
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default LikesTab;
+
+
+
+
+
